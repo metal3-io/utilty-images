@@ -74,3 +74,21 @@ FakeIPA simulate the IPA by:
   a queue of fake agents.
 - Faking the sync/async commands needed by ironic to inspect,
   clean and provision a node.
+
+## Keepalived
+
+Keepalived container used in Ironic deployments. Keepalived is used to
+provide fix IP address for Ironic in such a manner that even after pivoting
+operations the IP of Ironic stays persistent.
+
+[Keeplaived documentation](https://www.keepalived.org/manpage.html)
+
+Deployment configuration options:
+
+- `CUSTOM_CONF_DIR` - when specified, the config files will be moved to the
+  specified directory and the variable substitution will happen there
+- `PROVISIONING_IP` - the fix IP provided by keepalived
+- `PROVISIONING_INTERFACE` - The name of the interface that will be used
+  to "host" the fixed IP (keepalived is used in a pod that is attached to
+  host network, thus the interface names are the same as the interface names
+  on the host)
